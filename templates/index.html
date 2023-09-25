@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Sentiment Analysis</title>
+</head>
+<body>
+    <h1>YouTube Sentiment Analysis</h1>
+    <form method="POST">
+        <label for="video_id">Enter YouTube Video ID:</label>
+        <input type="text" name="video_id" id="video_id" required>
+        <label for="chat_id">Enter Telegram Chat ID (Optional):</label>
+        <input type="text" name="chat_id" id="chat_id">
+        <button type="submit">Predict Sentiment</button>
+    </form>
+
+    {% if overall_sentiment %}
+    <h2>Overall Video Sentiment:</h2>
+    <p>{{ overall_sentiment }}</p>
+    {% endif %}
+
+    <h2>Comments with Predicted Sentiments:</h2>
+    <table>
+        <tr>
+            <th>No.</th>
+            <th>Comment</th>
+            <th>Sentiment</th>
+        </tr>
+        {% for comment, sentiment in comments_with_sentiments %}
+		<tr>
+    			<td>{{ loop.index }}</td>
+    			<td>{{ comment }}</td>
+    			<td>{{ sentiment }}</td>
+		</tr>
+	{% endfor %}
+
+    </table>
+</body>
+</html>
